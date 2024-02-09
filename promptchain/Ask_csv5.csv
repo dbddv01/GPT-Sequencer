@@ -1,0 +1,5 @@
+input|action|option|next_df
+{full_prompt}|csv_peek|{}|next
+Given the dataframe "df", which looks like {result}, please respond to the following user request with a single, valid Python statement using pandas. The statement must start with "df = " and strictly adhere to the one-line code syntax of a single expression by enclosing each condition in parentheses to ensure they are evaluated correctly. There must be no additional comments or explanations. The user request is: {full_prompt}. The corresponding single expression is: df = |llm_completion|{'max_length': 200, 'temperature': 0.1, 'grammar' : 'grammar/singleexpression.gbnf'}|next
+{result}|execute_df_expression|{}|next
+{result}|user_input|{}|promptchain/Ask_csv5.csv

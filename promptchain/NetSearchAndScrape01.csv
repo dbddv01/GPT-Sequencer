@@ -1,0 +1,6 @@
+input|action|option|next_df
+{full_prompt}|internet_search|{}|next
+Extract 3 sites to visit from {result}|llm_completion|{'max_length': 384, 'temperature': 0.1, 'grammar' : 'grammar/urllist.gbnf'}|next
+{result}|getwebpage|{}|next
+While investigating the following query :{full_prompt} The following contextual information were found on the net : {result}. If thosz information make sense in regards of the initial query, please write an informative summarized answer in readable markdown format , otherwise ask the user to rework the query. Your answer is : |llm_completion|{'max_length': 768, 'temperature': 0.1}|next
+{result}|user_input|{}|promptchain/NetSearchAndScrape01.csv

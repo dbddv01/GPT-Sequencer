@@ -1,0 +1,5 @@
+input|action|option|next_df
+{full_prompt}|csv_peek|{}|next
+Using the Python pandas library, I need you to write a single-expression solution to answer a user's question based on a given dataset snippet. The dataset is in a pandas DataFrame named df. The user's question relates to analyzing a specific aspect of this dataset. Your response should be strictly one line of Python code, utilizing pandas, that directly addresses the user's query. No additional explanations, multiline code, or pre-processing steps are allowed. The single expression should be complete and executable as is, making efficient use of pandas' capabilities to extract or compute the required information from df. Here is the dataset snippet question: {result} and the user question : {full_prompt} . Remember, the response should be only one valid pandas expression that can be directly executed to answer the question. ### Assistant : Sure, the corresponding single expression is: df = |llm_completion|{'max_length': 200, 'temperature': 0.1, 'grammar' : 'grammar/singleexpression.gbnf'}|next
+{result}|execute_df_expression|{}|next
+{result}|user_input|{}|promptchain/Ask_csv10.csv

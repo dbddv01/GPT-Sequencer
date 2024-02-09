@@ -33,6 +33,8 @@ simplejson==3.19.2
 tiktoken==0.5.2
 transformers==4.35.0
 
+# Install llama-cpp-python manually with the following command (Cublas, windows, cuda117), for other config consult llama-cpp-python repo :
+# python -m pip install llama-cpp-python --force-reinstall --no-deps --index-url https://jllllll.github.io/llama-cpp-python-cuBLAS-wheels/AVX2/cu117
 
 
 

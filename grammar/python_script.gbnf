@@ -1,0 +1,8 @@
+space ::= " "?
+string ::=  "\"" (
+        [^"\\] |
+        "\\" (["\\/bfnrt] | "u" [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F])
+      )* "\"" space 
+parameters-item ::= "{" space "\"default\"" space ":" space string "," space "\"name\"" space ":" space string "," space "\"type\"" space ":" space string "}" space
+parameters ::= "[" space (parameters-item ("," space parameters-item)*)? "]" space
+root ::= "{" space "\"body\"" space ":" space string "," space "\"function_name\"" space ":" space string "," space "\"parameters\"" space ":" space parameters "," space "\"return_type\"" space ":" space string "}" space

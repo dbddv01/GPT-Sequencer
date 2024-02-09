@@ -1,0 +1,1 @@
+type CityData= { "city_name": string, "country": string, "reason_to_visit": { "percent_sunny_days": number, "top_3_tourist_attractions": [string, string, string], },};

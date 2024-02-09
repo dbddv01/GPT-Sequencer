@@ -1,0 +1,9 @@
+space ::= " "?
+number ::= ("-"? ([0-9] | [1-9] [0-9]*)) ("." [0-9]+)? ([eE] [-+]? [0-9]+)? space
+string ::=  "\"" (
+        [^"\\] |
+        "\\" (["\\/bfnrt] | "u" [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F])
+      )* "\"" space 
+courses ::= "[" space (string ("," space string)*)? "]" space
+boolean ::= ("true" | "false") space
+root ::= "{" space "\"age\"" space ":" space number "," space "\"courses\"" space ":" space courses "," space "\"is_student\"" space ":" space boolean "," space "\"name\"" space ":" space string "}" space

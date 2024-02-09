@@ -1,0 +1,26 @@
+{
+    "name": "John Doe",
+    "age": 30,
+    "isStudent": false
+}
+
+
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "name": { "type": "string" },
+        "age": { "type": "number" },
+        "isStudent": { "type": "boolean" }
+    },
+    "required": ["name", "age", "isStudent"]
+}
+
+space ::= " "?
+number ::= ("-"? ([0-9] | [1-9] [0-9]*)) ("." [0-9]+)? ([eE] [-+]? [0-9]+)? space
+boolean ::= ("true" | "false") space
+string ::=  "\"" (
+        [^"\\] |
+        "\\" (["\\/bfnrt] | "u" [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F])
+      )* "\"" space 
+root ::= "{" space "\"age\"" space ":" space number "," space "\"isStudent\"" space ":" space boolean "," space "\"name\"" space ":" space string "}" space

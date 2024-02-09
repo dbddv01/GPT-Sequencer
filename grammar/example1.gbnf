@@ -1,0 +1,8 @@
+space ::= " "?
+integer ::= ("-"? ([0-9] | [1-9] [0-9]*)) space
+boolean ::= ("true" | "false") space
+string ::=  "\"" (
+        [^"\\] |
+        "\\" (["\\/bfnrt] | "u" [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F])
+      )* "\"" space 
+root ::= "{" space "\"age\"" space ":" space integer "," space "\"is_active\"" space ":" space boolean "," space "\"name\"" space ":" space string "}" space

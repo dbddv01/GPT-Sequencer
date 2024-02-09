@@ -11,7 +11,7 @@ gradio_client==0.7.0
 jsonpointer==2.1
 jsonschema==4.19.2
 jsonschema-specifications==2023.7.1
-llama_cpp_python==0.2.23+cu117
+
 matplotlib==3.8.1
 mpld3==0.5.9
 nltk==3.8.1

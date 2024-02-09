@@ -21,6 +21,7 @@ pandas==2.1.2
 pathlib==1.0.1
 Pillow==10.1.0
 plotly==5.18.0
+PyMuPDF==1.23.21
 regex==2023.10.3
 requests-oauthlib==1.3.1
 
@@ -33,7 +34,7 @@ simplejson==3.19.2
 tiktoken==0.5.2
 
 
-# Install llama-cpp-python manually with the following command (Cublas, windows, cuda117), for other config consult llama-cpp-python repo :
+# Install llama-cpp-python manually with the following command (Cublas, windows, cuda117, python311), for other config consult llama-cpp-python repo :
 # python -m pip install llama-cpp-python --force-reinstall --no-deps --index-url https://jllllll.github.io/llama-cpp-python-cuBLAS-wheels/AVX2/cu117
 
 

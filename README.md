@@ -16,6 +16,7 @@ Run the following command to create a new Conda environment named (for example) 
 
 ```bash
 conda create -n Gptenv python=3.11
+conda activate Gptenv
 ```
 
 ### If you have Git installed:
@@ -41,6 +42,7 @@ cd Gptenv
 Inside the GPT-Sequencer directory (whether cloned or extracted from a ZIP file), install the required Python packages.
 
 ```bash
+cd GPT-Sequencer
 pip install -r requirements.txt
 ```
 

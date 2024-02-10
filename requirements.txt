@@ -5,13 +5,13 @@ chroma-hnswlib==0.7.3
 chromadb==0.4.18
 duckduckgo_search==4.1.1
 EbookLib==0.18
-fitz==0.0.1.dev2
+
 gradio==4.1.2
 gradio_client==0.7.0
 jsonpointer==2.1
 jsonschema==4.19.2
 jsonschema-specifications==2023.7.1
-PyMuPDF
+
 matplotlib==3.8.1
 mpld3==0.5.9
 nltk==3.8.1

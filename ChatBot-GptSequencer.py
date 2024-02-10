@@ -1736,7 +1736,7 @@ with gr.Blocks(css=STYLES, theme=small_and_beautiful_theme) as demo:
     
     with gr.Tab("Chat Interface", elem_classes=['no-label', 'small-small']):
         
-        title_md = gr.HTML("<h2>GPT Local Factory: empty </h2>", elem_classes=['center'])
+        title_md = gr.HTML("<h2>GPT-Sequencer : empty </h2>", elem_classes=['center'])
         
         with gr.Row():
 

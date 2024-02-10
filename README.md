@@ -23,6 +23,45 @@ This application represents a cutting-edge, chat-based platform designed to offe
 - **Procedural Prompt Chaining with Tools**: Enables procedural chaining of prompts with tools for web scraping, internet search, etc., enhancing task automation capabilities.
 
 - **Guided Outputs with Grammar GNBF File**: Utilizes a grammar GNBF file to guide outputs, creating an ecosystem suitable for beginners to advanced users.
+## Application Screenshots
+
+Below are various screenshots that illustrate the application's functionalities:
+
+### Main Application Screen
+This is the primary interface that users interact with when they start the application.
+![Main Application Screen](./screens/gptseq-mainscreen.png "Main Application Screen")
+
+### Batch Execution
+Here you can see the batch execution feature which allows for multiple actions to be performed in sequence.
+![Batch Execution](./screens/gptseq-batch-execution.png "Batch Execution")
+
+### Batch Execution Results
+After batch execution, the results are displayed as shown in this screenshot.
+![Batch Execution Results](./screens/gptseq-batch-execution-result.png "Batch Execution Results")
+
+### Configuration Settings
+This screenshot shows the configuration settings that can be adjusted by the user.
+![Configuration Settings](./screens/gptseq-config.png "Configuration Settings")
+
+### JSON Schema Converter
+For converting data structures, the JSON schema converter tool is shown here.
+![JSON Schema Converter](./screens/gptseq-jsonschema-converter.png "JSON Schema Converter")
+
+### Main Screen with Netsearch
+Here's how the main screen looks when the netsearch function is being used.
+![Main Screen with Netsearch](./screens/gptseq-mainscreen-netsearch.png "Main Screen with Netsearch")
+
+### Netsearch Log
+The application provides a log of the netsearch actions, as seen in this screenshot.
+![Netsearch Log](./screens/gptseq-mainscreen-netsearch-log.png "Netsearch Log")
+
+### Netsearch Sequencing
+This image illustrates how netsearch sequences can be constructed and managed.
+![Netsearch Sequencing](./screens/gptseq-mainscreen-netsearch-seq.png "Netsearch Sequencing")
+
+### Sequencing Functionality
+This is the sequencing loaded by default. User can create their own csv which allows more complex operations.
+![Sequencing Functionality](./screens/gptseq-sequence.png "Sequencing Functionality")
 
 ## Development Status and Focus
 
@@ -34,7 +73,7 @@ Designed for users ranging from beginners to those at more advanced levels, this
 
 ## Future Directions
 
-While the current implementation provides a solid foundation, future enhancements are anticipated to include more sophisticated memory management, broader file interaction capabilities, and refined batch processing techniques. The goal is to evolve this platform into a more robust and versatile tool that can accommodate an expanding array of tasks and user needs, making the most of LLM technology in a local setting. But it may be deprecated in a few month at the pace this technology goes. This app reflect my own learning curve into this technologies made with support of GPT. Code is more a 80's punkcode than anything correct. I'm not a coder nor a dev, i just use machines. 
+While the current implementation provides a solid foundation, future enhancements are anticipated to include more sophisticated memory management, broader file interaction capabilities, and refined batch processing techniques. The goal is to evolve this platform into a more robust and versatile tool that can accommodate an expanding array of tasks and user needs, making the most of LLM technology in a local setting. But it may be deprecated in a few month at the pace this technology goes. This app reflect my own learning curve into this technologies made with support of GPT. Code is more a 80's punkcode than anything correct. I'm not a coder nor a dev, i just use machines. I'm a poor lonesome cowboy in this project. If this inspire you further, i would be grateful. Don't expect too much support or guaranteed evolution here. This all depends of my private life balance.
 
 
 

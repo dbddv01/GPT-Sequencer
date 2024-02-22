@@ -2,7 +2,7 @@
 
 # Application Overview
 
-This application represents a cutting-edge, chat-based platform designed to offer dynamic interactions with users by processing inputs and delivering personalized responses. At its core, it employs a Language Learning Model (LLM) to comprehend and generate text, creating an engaging user experience. This system is a work in progress, demonstrating functionality while being open to future enhancements and optimizations.
+This application represents a chat-based platform designed to offer dynamic interactions with users by processing inputs and delivering personalized responses. At its core, it employs a Language Learning Model (LLM) to comprehend and generate text, creating an engaging user experience. This system is a work in progress, demonstrating functionality while being open to future enhancements and optimizations.
 
 ## Key Features
 
@@ -75,10 +75,7 @@ Designed for users ranging from beginners to those at more advanced levels, this
 
 ## Future Directions
 
-While the current implementation provides a solid foundation, future enhancements are anticipated to include more sophisticated memory management, broader file interaction capabilities, and refined batch processing techniques. The goal is to evolve this platform into a more robust and versatile tool that can accommodate an expanding array of tasks and user needs, making the most of LLM technology in a local setting. But it may be deprecated in a few month at the pace this technology goes. This app reflect my own learning curve into this technologies made with support of GPT. Code is more a 80's punkcode than anything correct. I'm not a coder nor a dev, i just use machines. I'm a poor lonesome cowboy in this project. If this inspire you further, i would be grateful. Don't expect too much support or guaranteed evolution here. This all depends of my private life balance.
-
-
-
+While the current implementation provides a solid foundation, future enhancements are anticipated to include more sophisticated memory management, broader file interaction capabilities, and refined batch processing techniques. The goal is to evolve this app into a more robust and versatile tool that can accommodate an expanding array of tasks and experiments, making the most of LLM technology in a local setting. But it may be deprecated in a few month at the pace this technology goes. This app reflect my own learning curve into this technologies made with support of GPT. Code is more a total shame 80's punkcode than anything correct, probably buggy and not meant for high end production. I'm not a coder nor a dev, i just use machines. I'm a poor lonesome cowboy in this project. If this inspire you further, i would be grateful. Don't expect too much support or guaranteed evolution here. This all depends of my private life balance.
 
 
 ## Installation steps :  GPT-Sequencer 

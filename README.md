@@ -25,7 +25,10 @@ This application represents a chat-based platform designed to offer dynamic inte
 - **Procedural Prompt Chaining with Tools**: Enables procedural chaining of prompts with tools for web scraping, internet search, etc., enhancing task automation capabilities.
 
 - **Guided Outputs with Grammar GNBF File**: Utilizes a grammar GNBF file to guide outputs, creating an ecosystem suitable for beginners to advanced users.
+
+
 ## Application Screenshots
+Some work in progress documentation can be found [here](https://github.com/dbddv01/GPT-Sequencer.github.io)
 
 Below are various screenshots that illustrate the application's functionalities:
 

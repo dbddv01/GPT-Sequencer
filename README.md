@@ -28,7 +28,7 @@ This application represents a chat-based platform designed to offer dynamic inte
 
 
 ## Application Screenshots
-Some work in progress documentation can be found [here](https://github.com/dbddv01/GPT-Sequencer.github.io)
+Some work in progress **documentation** can be found [here](https://github.com/dbddv01/GPT-Sequencer.github.io)
 
 Below are various screenshots that illustrate the application's functionalities:
 

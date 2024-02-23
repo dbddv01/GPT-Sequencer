@@ -1953,6 +1953,6 @@ with gr.Blocks(css=STYLES, theme=small_and_beautiful_theme) as demo:
     btn_memorize.click(memorize, [user_id, session_id], [csv_memory_df], preprocess=False)
 
 demo.queue()
-#demo.launch()
-demo.launch(share=True)
+demo.launch()
+#demo.launch(share=True)
 

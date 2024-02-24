@@ -7,7 +7,7 @@ duckduckgo_search==4.1.1
 EbookLib==0.18
 
 gradio==4.19.2
-gradio_client==0.7.0
+gradio-client==0.10.1
 jsonpointer==2.1
 jsonschema==4.19.2
 jsonschema-specifications==2023.7.1

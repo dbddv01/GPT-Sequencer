@@ -1746,7 +1746,7 @@ sequence_lst = scan_sequence_dir(sequence_dir)
 
 STYLES, small_and_beautiful_theme = load_css_styles()
 
-with gr.Blocks(css=STYLES, theme=small_and_beautiful_theme) as demo:
+with gr.Blocks(css=STYLES, theme=small_and_beautiful_theme, analytics_enabled=False) as demo:
     
     with gr.Tab("Chat Interface", elem_classes=['no-label', 'small-small']):
         

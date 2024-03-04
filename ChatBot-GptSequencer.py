@@ -1717,7 +1717,7 @@ sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFuncti
 #sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(model_name="jinaai/jina-embeddings-v2-base-en", trust_remote_code=True)
 #sentence_transformer_ef = embedding_functions.SentenceTransformerEmbeddingFunction(model_name="nomic-ai/nomic-embed-text-v1.5", trust_remote_code=True)
 client = chromadb.PersistentClient(path="db/")
-#client = chromadb.Client(Settings(anonymized_telemetry=False))
+client = chromadb.Client(Settings(anonymized_telemetry=False, is_persistent=True))
 
 Memory_database = client.get_or_create_collection(name="Memory",embedding_function=sentence_transformer_ef )
 collection_Doculibrary = client.get_or_create_collection(name="my_library", embedding_function=sentence_transformer_ef)

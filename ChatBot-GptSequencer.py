@@ -26,6 +26,11 @@ from chromadb.config import Settings
 from ast import literal_eval
 from ebooklib import epub
 
+from selenium import webdriver
+from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.common.by import By
+import time
 
 
 ##############################################  Functions
@@ -119,7 +124,7 @@ def user_input(query):
     #print(result)
     return result
 
-def internet_search(query):
+def internet_search_old(query):
     results = ddgs.text(query, region='wt-wt', safesearch='off', timelimit='y', backend="api", max_results = 5)
     result_list = list(results)
     print("Raw DDGS output")
@@ -134,6 +139,68 @@ def internet_search(query):
         #result_string += "Note{}: {}\n".format(i+1, result_list[i]["title"] +"|"+ result_list[i]['body'] +"|"+ result_list[i]["href"]) # This adds the body of the current result to the string, with a note number
         #result_string += "Note{}: {}\n".format(i+1, result_list[i]['body'])
     return result_string
+
+
+def internet_search(query):
+    
+    from selenium import webdriver
+    from selenium.webdriver.firefox.service import Service
+    from selenium.webdriver.firefox.options import Options
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    
+    
+    print("Query for Netsearch is : -> " + query + " <-  ")
+    print()
+
+    # Set up WebDriver options
+    firefox_options = Options()
+    firefox_options.add_argument("--headless")  # Ensures Firefox runs in headless mode
+    firefox_options.add_argument("--width=400")  # Window width
+    firefox_options.add_argument("--height=680")  # Window height
+
+    # Path to geckodriver
+    service = Service('geckodriver/geckodriver.exe')
+
+    # Initialize WebDriver
+    driver = webdriver.Firefox(service=service, options=firefox_options)
+
+    # Go to the DuckDuckGo search page directly with the query
+    driver.get("https://duckduckgo.com/?t=h_&q=" + query + "&ia=web")
+
+    # Initialize WebDriverWait instance for handling waits
+    wait = WebDriverWait(driver, 10)
+    
+    articles = driver.find_elements(By.CSS_SELECTOR, 'article[data-testid="result"]')
+
+    # Initialize a list to store results
+    results = []
+
+    # Loop through each article element
+    for article in articles:
+        # Extract the URL
+        try:
+            url_element = article.find_element(By.CSS_SELECTOR, 'a[data-testid="result-extras-url-link"]')
+            url = url_element.get_attribute('href')
+        except:
+            url = "URL not found"  # Handle case where URL might be missing
+        
+        # Extract the snippet
+        try:
+            snippet_element = article.find_element(By.CSS_SELECTOR, 'div[data-result="snippet"] span')
+            snippet = snippet_element.text
+        except:
+            snippet = "Snippet not found"  # Handle case where snippet might be missing
+        
+        # Append the result
+        results.append({'url': url, 'snippet': snippet})
+
+    # Display results or process them as needed
+    for result in results:
+        print(result)
+            
+    return results
 
 def fetch_titles_and_ids(titles):
     global ID_documents_list_for_search
@@ -632,6 +699,85 @@ def execute_python(query):
         # Return or handle the error message as needed
         return f"An error occurred: {e}"
 
+def mermaid_graph(mermaidjson):
+    
+    global Last_image_path
+    if is_valid_json(mermaidjson):
+        parsed_json = json.loads(mermaidjson)
+        mermaid_code = parsed_json.get('mermaidCode','')
+    else:
+        print("not valid json")
+        print(mermaidjson)
+        mermaid_code = "graph LR; A[No Valid Json] -->|alert|B[Stop];"    
+   
+   
+   
+   # mermaid_codejson = json.dumps(mermaid_code_json)
+   # mermaid_code_json = json.dumps({"mermaidCode": "graph LR; A[BigTim] -->|alert|B[Btest];"})
+    #mermaid_code_json = json.dumps(mermaidjson)
+    # Parse the JSON input
+    #data = json.loads(mermaid_code_json)
+    #print(memaidjson)
+    # Retrieve the Mermaid code from JSON
+    #mermaid_code = mermaidjson["mermaidCode"]
+    
+    import urllib.parse
+    from selenium import webdriver
+    from selenium.webdriver import Firefox
+    from selenium.webdriver.firefox.service import Service
+    from selenium.webdriver.firefox.options import Options  # This is correctly imported
+    from selenium.webdriver.common.by import By
+
+    # Use the correct class name for options
+    firefox_options = Options()  # Now correctly using the imported Options class
+    firefox_options.add_argument("--headless")  # Ensures Firefox runs in headless mode
+    firefox_options.add_argument("--width=400")  # Window width
+    firefox_options.add_argument("--height=680")  # Window height
+
+    # Path to your geckodriver
+    service = Service('geckodriver/geckodriver.exe')  # Update this path with actual location
+    driver = Firefox(service=service, options=firefox_options)  # Correctly create a Firefox driver instance
+
+
+
+    # HTML content with embedded Mermaid code
+    content = f"""
+    <html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({{startOnLoad:true}});</script>
+    </head>
+    <body>
+        <div class="mermaid">
+        {mermaid_code}
+        </div>
+    </body>
+    </html>
+    """
+
+    # URI-encode the content to ensure it's safely passed as a data URL
+    encoded_content = urllib.parse.quote(content)
+
+    # Set the content in the browser
+    data_url = "data:text/html;charset=utf-8," + encoded_content
+    driver.get(data_url)
+
+    # Wait for the Mermaid diagram to render
+    time.sleep(5)  # Adjust timing based on your needs
+
+    # Find the Mermaid element and take a screenshot
+    mermaid_element = driver.find_element(By.CLASS_NAME, "mermaid")
+    output_path = "output_diagram.png"
+    mermaid_element.screenshot(output_path)
+
+    # Clean up
+    driver.quit()
+    Last_image_path = output_path
+    results = "Mermaid engine produced following code  " + mermaid_code + " which rendered following graphic \nsaved as " + Last_image_path 
+    
+    # Return the data URL for viewing
+    return results
+
 
 def List_Library():
     var = document_titles_collection.get()  
@@ -677,7 +823,7 @@ def concatenate_history(user_history, session_id):
     return ' '.join(concatenated)
 
 
-def llm_completion(full_prompt, max_length=1024, temperature=0.1, top_p=0.9, grammar=None, **kwargs):
+def llm_completion(full_prompt, max_length, temperature=0.1, top_p=0.9, grammar=None, **kwargs):
     global MAX_TOK, llm, LOGTXT
     if grammar:
         llama_grammar = LlamaGrammar.from_file(grammar)
@@ -697,9 +843,9 @@ def llm_completion(full_prompt, max_length=1024, temperature=0.1, top_p=0.9, gra
         llm_answer = llm.create_completion(
             full_prompt, 
             stream=False, 
-            repeat_penalty=1.1, 
+            repeat_penalty=0.95, 
             max_tokens=max_length, 
-            stop =[], 
+            stop =["[User]:"], 
             echo=False, 
             temperature=temperature, 
             top_p=top_p, 
@@ -766,8 +912,8 @@ def llm_answer_via_Tool(user_id, session_id, user_prompt, user_tag, assistant_ta
     # Store the history entry under the session
     history[user_id][session_id][current_time] = history_entry
 
-    max_length = max_length
-    temperature = temperature
+    #max_length = max_length
+    #temperature = temperature
     next_df_filename = ""
 
     print('***Values*******')
@@ -814,7 +960,8 @@ def llm_answer_via_Tool(user_id, session_id, user_prompt, user_tag, assistant_ta
         'execute_python': execute_python,
         'ReuseDf' : ReuseDf,
         'getMemoryResult' : getMemoryResult,
-        'ResetFullPrompt' : ResetFullPrompt
+        'ResetFullPrompt' : ResetFullPrompt,
+        'mermaid_graph' : mermaid_graph,
     }
 
     for index, row in dataf.iterrows():
@@ -833,7 +980,11 @@ def llm_answer_via_Tool(user_id, session_id, user_prompt, user_tag, assistant_ta
         if action == 'getMemoryResult':
             option['user_id'] = user_id
             option['session_id'] = session_id
-        
+        if action == 'llm_completion':
+            if 'max_length' not in option:  # Check if the key 'max_length' does not exist in the dictionary
+                option['max_length'] = max_length  # Only assign if it does not exist
+
+
 
         
         result = str(function(input_to_function, **option))
@@ -954,8 +1105,8 @@ def llm_answer_via_Batch(user_id, session_id,user_prompt, user_tag, assistant_ta
 
     MAX_TOK = context_size - max_length
     df = dataf
-    max_length = max_length
-    temperature = temperature
+    #max_length = max_length
+    #temperature = temperature
 
     # Concatenate history for usage
     if include_history:
@@ -1287,10 +1438,10 @@ def load_df(filename):
     
     # Load DataFrame from CSV file
     if filename.lower().endswith('.csv'):
-        df = pd.read_csv(filename, delimiter="|" , encoding=result['encoding'])
+        df = pd.read_csv(filename, delimiter="\t" , encoding=result['encoding'])
         return df
     else:
-        return pd.DataFrame("input|action|option|next_df"),"Empty.csv"  # Return empty DataFrame if the file is not a CSV
+        return pd.DataFrame("input\taction\toption\tnext_df"),"Empty.csv"  # Return empty DataFrame if the file is not a CSV
 
 def load_df_from_df(next_df_filename):
     #print("NEXT DF")
@@ -1302,10 +1453,10 @@ def load_df_from_df(next_df_filename):
     
     # Load DataFrame from CSV file
     if next_df_filename.lower().endswith('.csv'):
-        df = pd.read_csv(next_df_filename, delimiter="|" , encoding=result['encoding'])
+        df = pd.read_csv(next_df_filename, delimiter="\t" , encoding=result['encoding'])
         return df,next_df_filename
     else:
-        return pd.DataFrame("input|action|option|next_df"),"Empty.csv"  # Return empty DataFrame if the file is not a CSV
+        return pd.DataFrame("input\taction\toption\tnext_df"),"Empty.csv"  # Return empty DataFrame if the file is not a CSV
 
 def load_df_from_file(files):
     # Detect the file encoding
@@ -1316,7 +1467,7 @@ def load_df_from_file(files):
     
     # Load DataFrame from CSV file
     if file_name.lower().endswith('.csv'):
-        df = pd.read_csv(file_name, delimiter="|" , encoding=result['encoding'])
+        df = pd.read_csv(file_name, delimiter="\t" , encoding=result['encoding'])
         Last_next_df_value_of_dataf = df['next_df'].iloc[-1]
         return df,os.path.basename(file_name), Last_next_df_value_of_dataf
     else:
@@ -1347,7 +1498,7 @@ def load_sequence(filename):
     # Load DataFrame from CSV file
     # return dataf,file_name, next_df_filename
     if filename.lower().endswith('.csv'):
-        df = pd.read_csv(filename, delimiter="|" , encoding=result['encoding'])
+        df = pd.read_csv(filename, delimiter="\t" , encoding=result['encoding'])
         Last_next_df_value_of_dataf = df['next_df'].iloc[-1]
         return df,filename, Last_next_df_value_of_dataf
     else:
@@ -1431,7 +1582,7 @@ def move_down(dataf, statement):
 
 def save_to_csv(dataf, file_name):
     # Specify the filename and path; here I'm saving it in the current directory
-    dataf.to_csv(file_name, sep='|', index=False)
+    dataf.to_csv(file_name, sep='\t', index=False)
     return f"Saved dataframe to {file_name}"
 
 def save_to_gbnf(gbnf_schema, f_name_gbnf):
@@ -1746,7 +1897,7 @@ sequence_lst = scan_sequence_dir(sequence_dir)
 
 STYLES, small_and_beautiful_theme = load_css_styles()
 
-with gr.Blocks(css=STYLES, theme=small_and_beautiful_theme, analytics_enabled=False) as demo:
+with gr.Blocks(css=STYLES, theme=small_and_beautiful_theme, analytics_enabled = False) as demo:
     
     with gr.Tab("Chat Interface", elem_classes=['no-label', 'small-small']):
         
@@ -1788,7 +1939,7 @@ with gr.Blocks(css=STYLES, theme=small_and_beautiful_theme, analytics_enabled=Fa
                     temperature = gr.Slider(minimum=0, maximum=1.5, value=0.1, step=0.1, label="Temp.", elem_classes=['no-label', 'small-small'], visible=False)
                     repeat_penalty = gr.Slider(minimum=0, maximum=2, value=1.1, step=0.1, label="Repeat", elem_classes=['no-label', 'small-small'], visible=False)
                     top_p = gr.Slider(minimum=0, maximum=1, value=0.9, step=0.01, label="Top_P", elem_classes=['no-label', 'small-small'], visible=False)
-                    max_length = gr.Slider(minimum=1, maximum=1024, value=128, step=1, label="Lenght", elem_classes=['no-label', 'small-small'], visible=False)
+                    max_length = gr.Slider(minimum=1, maximum=2048, value=128, step=2, label="Lenght", elem_classes=['no-label', 'small-small'], visible=True)
                     session_id=gr.Textbox(label="SessionID: ",value=generate_new_session_id, elem_classes=['no-label', 'small-small'])
                     user_id = gr.Textbox(label="UID: ",value="Guest", elem_classes=['no-label', 'small-small'])    
                     limit_number = gr.Slider(minimum=0, maximum=1024, value=10, step=1, label="Limit reload", elem_classes=['no-label', 'small-small'])
@@ -1955,4 +2106,3 @@ with gr.Blocks(css=STYLES, theme=small_and_beautiful_theme, analytics_enabled=Fa
 demo.queue()
 demo.launch()
 #demo.launch(share=True)
-

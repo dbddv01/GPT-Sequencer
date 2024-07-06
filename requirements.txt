@@ -34,7 +34,7 @@ simplejson==3.19.2
 tiktoken==0.5.2
 
 
-# Install llama-cpp-python manually with the following command (Cublas, windows, cuda117, python311), for other config consult llama-cpp-python repo :
+# Install llama-cpp-python manually with the following command (Cublas, windows, cuda121, python311), for other config consult llama-cpp-python repo :
 # python -m pip install llama-cpp-python --upgrade --prefer-binary --no-cache-dir --force-reinstall --extra-index-url=https://abetlen.github.io/llama-cpp-python/whl/cu121
 # then you may get a conflict due to numpy verson 2.0.0 isntalled during the llama-cpp-python wheel installation. (e.g. gradio 4.29.0 requires numpy~=1.0, but you have numpy 2.0.0 which is incompatible).
 # This can be solved by installing numbpy version 1.24.2  via  ''' pip install numpy==1.24.2 '''

@@ -6,7 +6,7 @@ chromadb==0.4.18
 duckduckgo_search==4.1.1
 EbookLib==0.18
 
-gradio==4.19.2
+gradio==4.29.0
 gradio-client==0.10.1
 jsonpointer==2.1
 jsonschema==4.19.2
@@ -15,7 +15,7 @@ jsonschema-specifications==2023.7.1
 matplotlib==3.8.1
 mpld3==0.5.9
 nltk==3.8.1
-numpy==1.26.3
+numpy==1.24.2
 orjson==3.9.10
 pandas==2.1.2
 pathlib==1.0.1
@@ -35,7 +35,9 @@ tiktoken==0.5.2
 
 
 # Install llama-cpp-python manually with the following command (Cublas, windows, cuda117, python311), for other config consult llama-cpp-python repo :
-# python -m pip install llama-cpp-python --force-reinstall --no-deps --index-url https://jllllll.github.io/llama-cpp-python-cuBLAS-wheels/AVX2/cu117
+# python -m pip install llama-cpp-python --upgrade --prefer-binary --no-cache-dir --force-reinstall --extra-index-url=https://abetlen.github.io/llama-cpp-python/whl/cu121
+# then you may get a conflict due to numpy verson 2.0.0 isntalled during the llama-cpp-python wheel installation. (e.g. gradio 4.29.0 requires numpy~=1.0, but you have numpy 2.0.0 which is incompatible).
+# This can be solved by installing numbpy version 1.24.2  via  ''' pip install numpy==1.24.2 '''
 
 
 

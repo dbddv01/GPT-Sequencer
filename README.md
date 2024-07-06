@@ -132,12 +132,12 @@ pip install -r requirements.txt
 ## Additional Configuration : llam-cpp-python
  
   - You **must** install the [llama-cpp-python](https://github.com/abetlen/llama-cpp-python) package, depending on your configuration, use something similar to the following command to install it.
-  - The example hereunder deals with an installation under windows, with AVX2 compliant cpu, nvidia gpu with a cuda version 1.17, and a python version 3.11
+  - The example hereunder deals with an installation under windows, with AVX2 compliant cpu, nvidia gpu with a cuda version 12.1, and a python version 3.11
 ```bash
-python -m pip install llama-cpp-python --prefer-binary --no-cache-dir --force-reinstall --extra-index-url=https://jllllll.github.io/llama-cpp-python-cuBLAS-wheels/AVX2/cu117
+python -m pip install llama-cpp-python --upgrade --prefer-binary --no-cache-dir --force-reinstall --extra-index-url=https://abetlen.github.io/llama-cpp-python/whl/cu121
 ```
 
-For further information please consult [https://github.com/jllllll/llama-cpp-python-cuBLAS-wheels/releases](https://github.com/jllllll/llama-cpp-python-cuBLAS-wheels/releases)
+For further information please consult [https://github.com/abetlen/llama-cpp-python/releases](https://github.com/abetlen/llama-cpp-python/releases)
 
 ## Additional Configuration : Download gguf llm model
   -  At this stage, a LLM .gguf file has to be put in place in the /models directory recently created.

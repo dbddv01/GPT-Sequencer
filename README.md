@@ -136,7 +136,11 @@ pip install -r requirements.txt
 ```bash
 python -m pip install llama-cpp-python --upgrade --prefer-binary --no-cache-dir --force-reinstall --extra-index-url=https://abetlen.github.io/llama-cpp-python/whl/cu121
 ```
-
+ - then you may get a conflict due to numpy verson 2.0.0 isntalled during the llama-cpp-python wheel installation. (e.g. gradio 4.29.0 requires numpy~=1.0, but you have numpy 2.0.0 which is incompatible).
+ - This can be solved by installing numbpy version 1.24.2  via
+```bash
+pip install numpy==1.24.2
+```
 For further information please consult [https://github.com/abetlen/llama-cpp-python/releases](https://github.com/abetlen/llama-cpp-python/releases)
 
 ## Additional Configuration : Download gguf llm model
